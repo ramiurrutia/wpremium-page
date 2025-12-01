@@ -6,10 +6,10 @@ import Button2 from "../components/Button2.astro";
 ---
 
 <Layout title="Pagina Principal">
-  <div class="min-h-screen w-full">
+  <div class="w-full flex flex-col items-center justify-center">
     {/* Volcanic Ember */}
     <div
-      class="absolute inset-0 -z-10"
+      class="flex flex-col justify-center items-center min-h-max absolute inset-0 -z-10"
       style={{
         background: `
         radial-gradient(ellipse 140% 70% at 70% 80%, rgba(255, 136, 56, 0.13), transparent 52%),
@@ -19,25 +19,72 @@ import Button2 from "../components/Button2.astro";
       `,
       }}
     >
-    </div>
-    {
-      (
-        <section class="flex flex-col items-center justify-center min-h-screen">
-          <h1 class="text-stone-50 text-2xl text-center">
-            Hosting simplificado con{" "}
-            <>
-              <br />
-              <span class="bg-radial-[at_50%_95%] from-[#ffa366] via-[#ff8838] to-[#ff6600] to-100% text-transparent bg-clip-text font-bold text-5xl flex flex-row items-center justify-center gap-2">
-                WIFIPREMIUM
-                <Logo class="w-14 h-14" />
-              </span>
-            </>
-          </h1>
-          <div class="flex flex-row gap-3 mt-4">
-            <Button1>Contactanos</Button1> <Button2>Ver planes</Button2>
+      {}
+      <section
+        class="flex flex-col items-center justify-center min-h-screen w-4/6"
+      >
+        <h1 class="text-stone-50 text-2xl text-center">
+          Hosting simplificado con{" "}
+          <>
+            <br />
+            <span
+              class="bg-radial-[at_50%_95%] from-[#ffa366] via-[#ff8838] to-[#ff6600] to-100% text-transparent bg-clip-text font-bold text-5xl flex flex-row items-center justify-center gap-2"
+            >
+              WIFIPREMIUM
+              <Logo class="w-14 h-14" />
+            </span>
+          </>
+        </h1>
+        <div class="flex flex-row gap-3 mt-4">
+          <Button1>Contactanos</Button1>
+          <Button2>Ver planes</Button2>
+        </div>
+      </section>
+      <section
+        id="example"
+        class="flex flex-row justify-center items-center min-h-screen w-4/6"
+      >
+        <div class="flex gap-4 bg-stone-400/10 p-6 rounded-lg">
+          <div class="">
+            <div role="tablist" class="-mr-px flex flex-col gap-1 max-w-xs">
+              <button
+                role="tab"
+                aria-selected="true"
+                class="bg-stone-50/10 rounded-xl px-4 py-2 text-left text-sm font-medium text-[#ff8838] transition-colors hover:text-[#ffa366]"
+              >
+                administracion@tudominio.com.ar
+              </button>
+
+              <button
+                role="tab"
+                aria-selected="false"
+                class="px-4 py-2 text-left text-sm font-medium text-gray-600 transition-colors hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
+              >
+                marketing@tudominio.com.ar
+              </button>
+
+              <button
+                role="tab"
+                aria-selected="false"
+                class="px-4 py-2 text-left text-sm font-medium text-gray-600 transition-colors hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
+              >
+                soporte@tudominio.com.ar
+              </button>
+            </div>
           </div>
-        </section>
-      )
-    }
+
+          <div
+            role="tabpanel"
+            class="p-4 flex flex-col gap-4 rounded-lg bg-stone-500/10"
+          >
+            <div class="flex flex-row min-w-90 justify-between items-center border-b border-stone-600 pb-1">
+              <span class="font-semibold">Redactar mensaje</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div></div>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 </Layout>
