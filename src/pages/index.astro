@@ -6,6 +6,52 @@ import Button2 from "../components/Button2.astro";
 ---
 
 <Layout title="Pagina Principal">
+  <script>
+    let cuentas = document.querySelectorAll('button[role="tab"]');
+    let mailContent = document.querySelectorAll(".content");
+
+    cuentas.forEach((cuenta, index) => {
+      cuenta.addEventListener("click", () => {
+        cuentas.forEach((c) => {
+          c.setAttribute("aria-selected", "false");
+          c.classList.remove(
+            "bg-stone-50/10",
+            "text-[#ff8838]",
+            "hover:text-[#ffa366]"
+          );
+          c.classList.add("text-gray-300", "hover:text-gray-100");
+        });
+
+        cuenta.setAttribute("aria-selected", "true");
+        cuenta.classList.add(
+          "bg-stone-50/10",
+          "text-[#ff8838]",
+          "rounded-lg",
+          "hover:text-[#ffa366]"
+        );
+        cuenta.classList.remove("text-gray-300", "hover:text-gray-100");
+
+        mailContent.forEach((content, i) => {
+          if (index === i) {
+            content.classList.remove("opacity-0", "max-h-0", "overflow-hidden");
+            content.classList.add(
+              "opacity-100",
+              "max-h-full",
+              "overflow-visible"
+            );
+          } else {
+            content.classList.remove(
+              "opacity-100",
+              "max-h-full",
+              "overflow-visible"
+            );
+            content.classList.add("opacity-0", "max-h-0", "overflow-hidden");
+          }
+        });
+      });
+    });
+  </script>
+
   <div class="w-full flex flex-col items-center justify-center">
     {/* Volcanic Ember */}
     <div
@@ -23,7 +69,11 @@ import Button2 from "../components/Button2.astro";
       <section
         class="flex flex-col items-center justify-center min-h-screen w-4/6"
       >
-        <h1 class="text-stone-50 text-2xl text-center">
+        <h1
+          class="text-stone-50 text-2xl text-center"
+          data-aos="fade"
+          data-aos-duration="300"
+        >
           Hosting simplificado con{" "}
           <>
             <br />
@@ -35,7 +85,10 @@ import Button2 from "../components/Button2.astro";
             </span>
           </>
         </h1>
-        <div class="flex flex-row gap-3 mt-4">
+        <div class="flex flex-row gap-3 mt-4"
+                      data-aos="fade"
+              data-aos-duration="300"
+              data-aos-delay="200">
           <Button1>Contactanos</Button1>
           <Button2>Ver planes</Button2>
         </div>
@@ -44,44 +97,137 @@ import Button2 from "../components/Button2.astro";
         id="example"
         class="flex flex-row justify-center items-center min-h-screen w-4/6"
       >
-        <div class="flex gap-4 bg-stone-400/10 p-6 rounded-lg">
-          <div class="">
-            <div role="tablist" class="-mr-px flex flex-col gap-1 max-w-xs">
+        <div class="flex flex-col bg-stone-400/10 rounded-lg max-w-3xl"
+        data-aos="slide-up">
+          <div
+            class="flex flex-row gap-2 text-xs bg-gradient-to-b from-stone-300/9 to-stone-100/11 rounded-t-lg p-2 border-b-1 border-stone-300/15"
+          >
+            <i
+              class="fa-solid fa-circle text-red-500 hover:text-red-500/70 transition-colors"
+            ></i>
+            <i
+              class="fa-solid fa-circle text-amber-300/90 hover:text-amber-300/70 transition-colors"
+            ></i>
+            <i
+              class="fa-solid fa-circle text-green-500 hover:text-green-500/70 transition-colors"
+            ></i>
+          </div>
+          <div class="flex flex-row">
+            <div
+              role="tablist"
+              class="flex flex-col gap-2 bg-stone-500/15 py-3 px-2">
               <button
                 role="tab"
                 aria-selected="true"
-                class="bg-stone-50/10 rounded-xl px-4 py-2 text-left text-sm font-medium text-[#ff8838] transition-colors hover:text-[#ffa366]"
+                class="bg-stone-50/10 rounded-lg px-2 py-2 text-left text-sm font-medium text-[#ff8838] transition-colors hover:text-[#ffa366]"
               >
-                administracion@tudominio.com.ar
+                administracion@dominio.com.ar
               </button>
 
               <button
                 role="tab"
                 aria-selected="false"
-                class="px-4 py-2 text-left text-sm font-medium text-gray-600 transition-colors hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
+                class="px-2 py-2 text-left text-sm font-medium text-gray-300 transition-colors hover:text-gray-100"
               >
-                marketing@tudominio.com.ar
+                marketing@dominio.com.ar
               </button>
 
               <button
                 role="tab"
                 aria-selected="false"
-                class="px-4 py-2 text-left text-sm font-medium text-gray-600 transition-colors hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
+                class="px-2 py-2 text-left text-sm font-medium text-gray-300 transition-colors hover:text-gray-100"
               >
-                soporte@tudominio.com.ar
+                soporte@dominio.com.ar
               </button>
+            </div>
+            <div
+              role="tabpanel"
+              class="p-4 flex flex-col gap-4 bg-stone-900/10"
+            >
+              <div
+                class="flex flex-row gap-2 items-center min-w-full justify-between"
+              >
+                <i
+                  class="fa-solid fa-arrow-left text-stone-400 hover:text-stone-500 transition-colors"
+                ></i>
+                <div class="flex flex-row gap-4">
+                  <i
+                    class="fa-regular fa-star text-stone-400 hover:text-stone-500 transition-colors"
+                  ></i>
+                  <i
+                    class="fa-solid fa-box-archive text-stone-400 hover:text-stone-500 transition-colors"
+                  ></i>
+                  <i
+                    class="fa-solid fa-trash-can text-stone-400 hover:text-stone-500 transition-colors"
+                  ></i>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="flex flex-row gap-2 items-center">
+                  <i class="fa-solid fa-circle-user text-stone-300"></i>
+                  <span class="text-xs text-stone-300"
+                    >De: &lt;contacto@wifipremium.com.ar &gt;</span
+                  >
+                </div>
+                <span class="text-xs text-stone-400 mt-1">Para mí</span>
+                <div class="p-4 bg-stone-900/30 rounded-lg mt-2">
+                  <div class="content" data-aos="fade" data-aos-duration="300">
+                    <span class="font-semibold text-2xl text-stone-200"
+                      >Más organizado</span
+                    >
+                    <p class="text-stone-300 mt-2 text-sm leading-6">
+                      Lo bueno de tener correos con tu propio dominio es que
+                      todo queda más organizado. Cada área de tu negocio puede
+                      tener su canal formal de comunicación, lo que facilita
+                      delegar tareas, mantener registros claros y proyectar una
+                      imagen sólida y profesional.
+                    </p>
+                  </div>
+                  <div class="content opacity-0 max-h-0 overflow-hidden">
+                    <span class="font-semibold text-2xl text-stone-200"
+                      >Ejemplos reales</span
+                    >
+                    <p class="text-stone-300 mt-2 text-sm leading-6">
+                      Con un correo personalizado para marketing, las consultas
+                      sobre campañas, leads y oportunidades llegan directamente
+                      al área correspondiente. Nada se mezcla con otros
+                      departamentos, lo que permite responder más rápido,
+                      optimizar estrategias y mantener un flujo de trabajo
+                      ordenado.
+                    </p>
+                  </div>
+                  <div class="content opacity-0 max-h-0 overflow-hidden">
+                    <span class="font-semibold text-2xl text-stone-200"
+                      >Simple de utilizar</span
+                    >
+                    <p class="text-stone-300 mt-2 text-sm leading-6">
+                      Un correo dedicado a soporte permite que los clientes te
+                      contacten de manera clara y directa. Cada caso queda
+                      registrado en un entorno profesional, lo que mejora el
+                      seguimiento, agiliza las respuestas y refuerza la
+                      confianza en tu servicio.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div
-            role="tabpanel"
-            class="p-4 flex flex-col gap-4 rounded-lg bg-stone-500/10"
-          >
-            <div class="flex flex-row min-w-90 justify-between items-center border-b border-stone-600 pb-1">
-              <span class="font-semibold">Redactar mensaje</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div></div>
+        </div>
+      </section>
+      <section class="min-h-screen w-4/6">
+        <h2>Precios</h2>
+        <div>
+          <div>
+            <h3>Plan Basico</h3>
+            <p>$1000 / mes</p>
+          </div>
+          <div>
+            <h3>Plan Estándar</h3>
+            <p>$2000 / mes</p>
+        </div>
+        <div>
+            <h3>Plan Premium</h3>
+            <p>$3000 / mes</p>
           </div>
         </div>
       </section>
